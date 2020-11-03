@@ -6,13 +6,13 @@ Minimalist command-line tool for MD5-hashing files
 
 
 
-![ZMD5](https://github.com/ariebesehl/ZMD5/blob/master/__screenshot.png "")
+![ZMD5](https://github.com/ariebesehl/ZMD5/blob/main/__screenshot.png "")
 
 
 
 ## Installation
 
-1) Download https://github.com/ariebesehl/ZMD5/raw/master/__latest.zip
+1) Download https://github.com/ariebesehl/ZMD5/raw/main/__latest.zip
 
 2) Extract to folder of your choice (*optional*: add a `PATH` variable to use utility from everywhere)
 
