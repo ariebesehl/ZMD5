@@ -159,9 +159,7 @@ void ZMD5_Finish(void) {
     ZMD5_Feed(rZMD5_Padding, lPaddingLength);
     ZMD5_Feed((const unsigned char*)rZMD5_Size, 8);
 }
-unsigned long long ZMD5_Size(void) {
-    return (((unsigned long long)rZMD5_Size[1] << 29) | (rZMD5_Size[0] >> 3));
-}
+unsigned long long ZMD5_Size(void) {return (((unsigned long long)rZMD5_Size[1] << 29) | (rZMD5_Size[0] >> 3));}
 const char* ZMD5_Digest(void) {
     for (unsigned int i = 0; i < 4; i++) {
         for (unsigned int ii = 0; ii < 4; ii++) {
@@ -174,30 +172,6 @@ const char* ZMD5_Digest(void) {
     }
     rZMD5_Digest[32] = '\0';
     return rZMD5_Digest;
-}
-const char* ZMD5_HashData(const unsigned char* iData, size_t iLength) {
-    if (iData != NULL) {
-        ZMD5_Init();
-		ZMD5_Feed(iData, iLength);
-		ZMD5_Finish();
-		return ZMD5_Digest();
-    } else {
-        rZMD5_Digest[0] = '\0';
-        return rZMD5_Digest;
-    }
-}
-const char* ZMD5_HashText(const char* iText) {
-    if (iText != NULL) {
-        size_t lLength = -1;
-        while (iText[++lLength]);
-        ZMD5_Init();
-		ZMD5_Feed((const unsigned char*)iText, lLength);
-		ZMD5_Finish();
-		return ZMD5_Digest();
-    } else {
-        rZMD5_Digest[0] = '\0';
-        return rZMD5_Digest;
-    }
 }
 
 #endif // ZMD5_C_INCLUDED

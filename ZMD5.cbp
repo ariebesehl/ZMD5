@@ -17,12 +17,14 @@
 			<Add option="-fexpensive-optimizations" />
 			<Add option="-flto" />
 			<Add option="-O3" />
+			<Add option="-Wfatal-errors" />
+			<Add option="-Wextra" />
 			<Add option="-Wall" />
 		</Compiler>
 		<Linker>
+			<Add option="-O3" />
 			<Add option="-flto" />
 			<Add option="-s" />
-			<Add option="-lwinmm" />
 		</Linker>
 		<Unit filename="ZMD5.c">
 			<Option compilerVar="CC" />
