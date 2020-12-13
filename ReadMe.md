@@ -32,7 +32,7 @@ Minimalist command-line tool for MD5-hashing files
 
 2) Accepts wildcard and input from `stdin`
 
-3) *Significantly* faster compared to built-in `certutil -hashfile <filename> MD5`
+3) *Significantly* faster compared to built-in `certutil -hashfile <filename> MD5` (~55% faster at 32.93s vs. 52.21s with 16 GiB of data)
 
 4) Valid hashes directed to `stdout` following `<MD5 hash>\t<filepath> (<filesize> bytes)\n` convention
 
