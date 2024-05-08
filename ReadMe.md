@@ -6,9 +6,9 @@ Minimalist command-line tool for MD5-hashing files
 
 
 
-![ZMD5](https://github.com/ariebesehl/ZMD5/blob/main/doc-screenshot-win7.png "")
-
 ![ZMD5](https://github.com/ariebesehl/ZMD5/blob/main/doc-screenshot-lmde6.png "")
+
+![ZMD5](https://github.com/ariebesehl/ZMD5/blob/main/doc-screenshot-win7.png "")
 
 
 
