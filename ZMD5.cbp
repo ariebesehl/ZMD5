@@ -26,11 +26,11 @@
 			<Add option="-flto" />
 			<Add option="-s" />
 		</Linker>
-		<Unit filename="ZMD5.c">
+		<Unit filename="ZMD5-core.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="ZMD5.h" />
-		<Unit filename="ZMD5_Main.c">
+		<Unit filename="ZMD5-core.h" />
+		<Unit filename="ZMD5.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>
