@@ -1,4 +1,4 @@
-/*** Copyright (C) 2024 Andreas 'cr4qsh0t' Riebesehl
+/*** Copyright (C) 2020-2025 Andreas 'cr4qsh0t' Riebesehl
 **** This work is licensed under: This work is presently unlicensed.
 ****
 ***/

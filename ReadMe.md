@@ -6,9 +6,9 @@ Minimalist command-line tool for MD5-hashing files
 
 
 
-![ZMD5](https://github.com/ariebesehl/ZMD5/blob/main/doc-screenshot-lmde6.png "")
+![ZMD5](https://github.com/ariebesehl/ZMD5/blob/main/doc/cover-lmde6.png "ZMD5 running in LMDE 6")
 
-![ZMD5](https://github.com/ariebesehl/ZMD5/blob/main/doc-screenshot-win7.png "")
+![ZMD5](https://github.com/ariebesehl/ZMD5/blob/main/doc/cover-win7.png "ZMD5 running in Windows 7")
 
 
 
@@ -54,6 +54,6 @@ Minimalist command-line tool for MD5-hashing files
 
 ## License
 
-Copyright (C) 2020 Andreas Riebesehl a.k.a. cr4qsh0t
+Copyright (C) 2020-2025 Andreas Riebesehl a.k.a. cr4qsh0t
 
 This work is licensed under: This work is presently unlicensed.
