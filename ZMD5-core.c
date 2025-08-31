@@ -2,31 +2,28 @@
 **** This work is licensed under: This work is presently unlicensed.
 ****
 ***/
-#ifndef ZMD5_CORE_C_INCLUDED
-#define ZMD5_CORE_C_INCLUDED
-
 #include <stdlib.h>
-#include "ZMD5-core.h"
 
-//#define ZMD5_MACRO_FUNCTIONS // These appear to be slightly slower!
+#include "ZMD5-core.h"
+//#define ZMD5_MACRO_FUNCTIONS
 
 static unsigned int rZMD5_Hash[4];
 static unsigned int rZMD5_Counter[2];
 static unsigned int rZMD5_Size[2];
 static unsigned char rZMD5_Buffer[64];
-static const unsigned char rZMD5_Padding[64] = {0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+static const unsigned char rZMD5_Padding[64] = {
+	0x80, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0
+};
 static char rZMD5_Digest[64]; // redundancy for alignment
-#ifndef ZMD5_MACRO_FUNCTIONS
-static inline unsigned int ZMD5_R(unsigned int x, unsigned int n) {return (x << n) | (x >> (32 - n));}
-static inline unsigned int ZMD5_F(unsigned int x, unsigned int y, unsigned int z) {return ((x & y) | (~x & z));}
-static inline unsigned int ZMD5_G(unsigned int x, unsigned int y, unsigned int z) {return ((x & z) | (y & ~z));}
-static inline unsigned int ZMD5_H(unsigned int x, unsigned int y, unsigned int z) {return (x ^ y ^ z);}
-static inline unsigned int ZMD5_I(unsigned int x, unsigned int y, unsigned int z) {return (y ^ (x | ~z));}
-static inline void ZMD5_FF(unsigned int* a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac) {*a = ZMD5_R(*a + ZMD5_F(b, c, d) + x + ac, s) + b;}
-static inline void ZMD5_GG(unsigned int* a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac) {*a = ZMD5_R(*a + ZMD5_G(b, c, d) + x + ac, s) + b;}
-static inline void ZMD5_HH(unsigned int* a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac) {*a = ZMD5_R(*a + ZMD5_H(b, c ,d) + x + ac, s) + b;}
-static inline void ZMD5_II(unsigned int* a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac) {*a = ZMD5_R(*a + ZMD5_I(b, c, d) + x + ac, s) + b;}
-#else
+
+#ifdef ZMD5_MACRO_FUNCTIONS
 #define ZMD5_R(X,N) (((X) << (N)) | ((X) >> (32 - (N))))
 #define ZMD5_F(X,Y,Z) (((X) & (Y)) | (~(X) & (Z)))
 #define ZMD5_G(X,Y,Z) (((X) & (Z)) | ((Y) & ~(Z)))
@@ -36,8 +33,18 @@ static inline void ZMD5_II(unsigned int* a, unsigned int b, unsigned int c, unsi
 #define ZMD5_GG(A,B,C,D,X,S,AC) (*(A) = ZMD5_R(*(A) + ZMD5_G((B), (C), (D)) + (X) + (AC), (S)) + (B))
 #define ZMD5_HH(A,B,C,D,X,S,AC) (*(A) = ZMD5_R(*(A) + ZMD5_H((B), (C), (D)) + (X) + (AC), (S)) + (B))
 #define ZMD5_II(A,B,C,D,X,S,AC) (*(A) = ZMD5_R(*(A) + ZMD5_I((B), (C), (D)) + (X) + (AC), (S)) + (B))
+#else
+static inline unsigned int ZMD5_R(unsigned int x, unsigned int n) {return (x << n) | (x >> (32 - n));}
+static inline unsigned int ZMD5_F(unsigned int x, unsigned int y, unsigned int z) {return ((x & y) | (~x & z));}
+static inline unsigned int ZMD5_G(unsigned int x, unsigned int y, unsigned int z) {return ((x & z) | (y & ~z));}
+static inline unsigned int ZMD5_H(unsigned int x, unsigned int y, unsigned int z) {return (x ^ y ^ z);}
+static inline unsigned int ZMD5_I(unsigned int x, unsigned int y, unsigned int z) {return (y ^ (x | ~z));}
+static inline void ZMD5_FF(unsigned int* a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac) {*a = ZMD5_R(*a + ZMD5_F(b, c, d) + x + ac, s) + b;}
+static inline void ZMD5_GG(unsigned int* a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac) {*a = ZMD5_R(*a + ZMD5_G(b, c, d) + x + ac, s) + b;}
+static inline void ZMD5_HH(unsigned int* a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac) {*a = ZMD5_R(*a + ZMD5_H(b, c ,d) + x + ac, s) + b;}
+static inline void ZMD5_II(unsigned int* a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac) {*a = ZMD5_R(*a + ZMD5_I(b, c, d) + x + ac, s) + b;}
 #endif // ZDM5_MACRO_FUNCTIONS
-//void ZMD5_Transform(const unsigned char* iInputBlock) {
+
 static void ZMD5_Transform(const unsigned int* x) {
     #define S11 7
     #define S12 12
@@ -55,7 +62,6 @@ static void ZMD5_Transform(const unsigned int* x) {
     #define S42 10
     #define S43 15
     #define S44 21
-	//const unsigned int* x = (const unsigned int*)&iInputBlock[0];
 	unsigned int a = rZMD5_Hash[0];
 	unsigned int b = rZMD5_Hash[1];
 	unsigned int c = rZMD5_Hash[2];
@@ -164,7 +170,9 @@ void ZMD5_Finish(void) {
     ZMD5_Feed(rZMD5_Padding, lPaddingLength);
     ZMD5_Feed((const unsigned char*)rZMD5_Size, 8);
 }
-unsigned long long ZMD5_Size(void) {return (((unsigned long long)rZMD5_Size[1] << 29) | (rZMD5_Size[0] >> 3));}
+unsigned long long ZMD5_Size(void) {
+	return (((unsigned long long)rZMD5_Size[1] << 29) | (rZMD5_Size[0] >> 3));
+}
 const char* ZMD5_Digest(void) {
     for (unsigned int i = 0; i < 4; i++) { // Yes, yes, these loops can be unrolled, but is it REALLY worth it?
         for (unsigned int ii = 0; ii < 4; ii++) {
@@ -178,6 +186,7 @@ const char* ZMD5_Digest(void) {
     rZMD5_Digest[32] = '\0';
     return rZMD5_Digest;
 }
+
 #ifdef ZMD5__TEST__
 const char* ZMD5_HashText(const char* iText) {
     if (iText != NULL) {
@@ -192,4 +201,3 @@ const char* ZMD5_HashText(const char* iText) {
     }
 }
 #endif // ZMD5__TEST__
-#endif // ZMD5_CORE_C_INCLUDED
