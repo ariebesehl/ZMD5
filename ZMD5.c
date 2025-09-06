@@ -19,11 +19,12 @@
 #define ZMD5_BUFFER_SIZE (1048576 * 2)
 static unsigned char gBuffer[ZMD5_BUFFER_SIZE];
 
-#define ZMD5_MSG_NAME		"ZMD5"
-#define ZMD5_MSG_VERSION	"v250818"
+#define ZMD5_MSG_NAME		"zmd5"
+#define ZMD5_MSG_VERSION	"v250906"
 #define ZMD5_MSG_AUTHOR		"cr4qsh0t"
-#define ZMD5_MSG_HELP		"Usage: " ZMD5_MSG_NAME " <files|stdin>"
-#define ZMD5_MSG_NOFILE		"Err: cannot open as file %s"
+#define ZMD5_MSG_HELP		"usage: " ZMD5_MSG_NAME " <files|stdin>"
+#define ZMD5_MSG_NOFILE		"wrn: cannot open as file %s"
+#define ZMD5_MSG_READ		"wrn: could not open %d path(s)"
 //#define ZMD5_MSG_MOTD		ZMD5_MSG_NAME " -- " ZMD5_MSG_VERSION " -- " ZMD5_MSG_AUTHOR " -- " ZMD5_MSG_HELP
 #ifdef ZMD5_WINDOWS
     #define ZMD5_MSG_LIST	"%s\t%I64u\t%s"
@@ -49,18 +50,19 @@ int main(int iArgC, char** iArgV) {
 				FILE* lFile;
 				if ((lFile =  fopen(iArgV[i], "rb")) != NULL) {
 					gZMD5_Hash(lFile);
-					printf(ZMD5_MSG_LIST "\n", ZMD5_Digest(), ZMD5_Size(), iArgV[i]);
 					fclose(lFile);
+					printf(ZMD5_MSG_LIST "\n", ZMD5_Digest(), ZMD5_Size(), iArgV[i]);
 				} else {
 					++lError;
 					fprintf(stderr, ZMD5_MSG_NOFILE "\n", iArgV[i]);
 				}
 			}
 		}
+		if (lError) {fprintf(stderr, ZMD5_MSG_READ "\n", lError);}
 	} else {
 		ZMD5_BINARY_STDIN();
 		gZMD5_Hash(stdin);
 		printf(ZMD5_MSG_LIST "\n", ZMD5_Digest(), ZMD5_Size(), "<stdin>");
 	}
-    return lError;
+    return 0;
 }
