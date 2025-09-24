@@ -1,4 +1,4 @@
 {
-	"sources": ["./ZMD5-core.c","./ZMD5.c"],
-	"target": "./zmd5"
+	"target": "./zmd5",
+	"sources": ["./ZMD5-core.c","./ZMD5.c"]
 }
