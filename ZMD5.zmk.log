@@ -12,32 +12,31 @@
         }
     },
     "target": "/home/andi/code/c/ZMD5/zmd5",
-    "zmake": "250906",
+    "zmake": "250917",
     "host": {
         "['date']": [
-            "2025-09-06T02:51:03 CEST"
+            "2025-09-24T17:27:17 CEST"
         ],
         "['zmake', '--version']": [
-            "zmake-v250906"
+            "zmake-v250917"
         ],
-        "['neofetch', '--stdout']": [
+        "['neofetch', '--stdout', '--disable', 'uptime']": [
             "andi@ztk-dt-andi ",
             "---------------- ",
             "OS: LMDE 6 (faye) x86_64 ",
-            "Kernel: 6.12.38+deb12-rt-amd64 ",
-            "Uptime: 1 day, 3 hours, 16 mins ",
-            "Packages: 3173 (dpkg), 51 (flatpak) ",
+            "Kernel: 6.12.43+deb12-rt-amd64 ",
+            "Packages: 3170 (dpkg), 53 (flatpak) ",
             "Shell: bash 5.2.15 ",
             "Resolution: 1920x1080 ",
             "DE: Cinnamon 6.4.8 ",
             "WM: Mutter (Muffin) ",
-            "WM Theme: Mint-Y-Dark-Red (Mint-Y) ",
-            "Theme: Mint-Y-Dark-Red [GTK2/3] ",
-            "Icons: Mint-Y-Yaru [GTK2/3] ",
+            "WM Theme: Mint-Y-Dark-Sand (Mint-Y) ",
+            "Theme: Mint-Y-Dark-Sand [GTK2/3] ",
+            "Icons: Mint-Y-Sand [GTK2/3] ",
             "Terminal: gnome-terminal ",
             "CPU: AMD Ryzen 7 5700X3D (16) @ 4.149GHz ",
             "GPU: AMD ATI Radeon RX 7700 XT / 7800 XT ",
-            "Memory: 2238MiB / 15918MiB "
+            "Memory: 2605MiB / 15918MiB "
         ],
         "['gcc', '--version']": [
             "gcc (Debian 12.2.0-14+deb12u1) 12.2.0",
@@ -64,7 +63,6 @@
                 "gcc",
                 "-O3",
                 "-flto",
-                "-fexpensive-optimizations",
                 "-Wfatal-errors",
                 "-Werror",
                 "-Wall",
@@ -78,7 +76,6 @@
                 "gcc",
                 "-O3",
                 "-flto",
-                "-fexpensive-optimizations",
                 "-Wfatal-errors",
                 "-Werror",
                 "-Wall",
